@@ -8,34 +8,34 @@ public class Catalog {
 	private static ArrayList<User> users= new ArrayList<User>();
 	private static ArrayList<String> genres= new ArrayList<String>();
 	
-	public ArrayList<Comic> getComics(){
+	public static ArrayList<Comic> getComics(){
 		return comics;
 	}
-	public ArrayList<Loan> getLoans(){
+	public static ArrayList<Loan> getLoans(){
 		return loans;
 	}
-	public ArrayList<User> getUsers(){
+	public static ArrayList<User> getUsers(){
 		return users;
 	}
-	public ArrayList<String> getGenres(){
+	public static ArrayList<String> getGenres(){
 		return genres;
 	}
-	public void addComic(Comic comic){
+	public static void addComic(Comic comic){
 		comics.add(comic);
 	}
-	public void addLoan(Loan loan){
+	public static void addLoan(Loan loan){
 		loans.add(loan);
 	}
-	public void addUser(User user){
+	public static void addUser(User user){
 		users.add(user);
 	}
-	public void addGenre(String genre){
+	public static void addGenre(String genre){
 		genres.add(genre);
 	}
-	public boolean removeComic(Comic comic){
+	public static boolean removeComic(Comic comic){
 		return comics.remove(comic);
 	}
-	public boolean removeUser(User user){
+	public static boolean removeUser(User user){
 		return users.remove(user);
 	}
 	
