@@ -89,7 +89,7 @@ public class UserAdmin extends User {
 			System.out.println("No hay usuarios.\n");
 			return this;
 		}
-		System.out.println("Elija un usuario de la lista para borrar:\n");
+		System.out.println("\n--Elija un usuario de la lista para borrar--\n");
 		ArrayList<User> usuarios = new ArrayList<User>(Catalog.getUsers());
 		for(int i =0;i<usuarios.size();i++)System.out.println(i+ " " + usuarios.get(i).toString());
 		Catalog.removeUser(usuarios.get(Reader.readInt()));
@@ -105,6 +105,16 @@ public class UserAdmin extends User {
 
 	// 5
 	public Person addComic() {
+		System.out.println("\n--Elija un género--\n");
+		ArrayList<String> generos = new ArrayList<String>(Catalog.getGenres());
+		for(int i = 0; i<generos.size();i++){
+			System.out.println(i+ " " + generos.get(i));
+		}
+		int genero = Reader.readInt();
+		generos.get(genero);
+		System.out.println("\n--Ingrese Nombre(no se admiten espacios usar '-') y Volumen--\n");
+		Comic comic = new Comic(Reader.readString(),generos.get(genero), Reader.readInt());
+		Catalog.addComic(comic);		
 		return this;
 	}
 

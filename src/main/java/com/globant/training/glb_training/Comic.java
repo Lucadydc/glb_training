@@ -17,7 +17,7 @@ public class Comic implements Comparable<Comic>{
 	}
 	
 	public String toString(){
-		return "["+ name + "] ["+volume+"] ["+genre+"]";
+		return "["+ name + "] ["+volume+"] ["+genre+"] ["+copies+"]";
 	}
 	public String getName() {
 		return this.name;
@@ -36,6 +36,9 @@ public class Comic implements Comparable<Comic>{
 	}
 	public void increaseCopies(){
 		this.copies+=1;
+	}
+	public void decreaseCopies(){
+		this.copies-=1;
 	}
 	public int getCopies(){
 		return copies;

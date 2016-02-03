@@ -12,6 +12,7 @@ public class App {
 		Catalog.addUser(new User("pepe","mujica"));
 		Catalog.addUser(new User("user","pass"));
 		Catalog.addUser(new User("hola","123"));
+		Catalog.addGenre("Superheroes");
 		
 		Person persona = new Person();
 		do{
