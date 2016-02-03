@@ -1,5 +1,7 @@
 package com.globant.training.glb_training;
 
+import java.util.ArrayList;
+
 public class UserAdmin extends User {
 	final private static String user = "Sheldon";
 	final private static String pass = "Bazinga";
@@ -37,7 +39,7 @@ public class UserAdmin extends User {
 			new Action(){public Person method(){ return addGenre();}},//12
 			new Action(){public Person method(){ return editGenre();}},//13
 			new Action(){public Person method(){ return removeGenre();}},//14
-			new Action(){public Person method(){ return exit();}},//15 log out
+			new Action(){public Person method(){ return logOut();}},//15 
 			new Action(){public Person method(){ return exit();}},//16
 	}; 
 	
@@ -63,21 +65,34 @@ public class UserAdmin extends User {
 
 	// 0
 	public Person listOfUsers() {
+		Catalog.getUsers().forEach(s->System.out.println(s.toString()));
 		return this;
 	}
 
 	// 1
 	public Person addUser() {
+		System.out.println("\n--Ingrese Usuario y Contraseña del nuevo Usuario--\n");
+		Catalog.addUser(new User(Reader.readString(),Reader.readString()));
 		return this;
 	}
 
 	// 2
 	public Person editUser() {
+		this.removeUser();
+		this.addUser();
 		return this;
 	}
 
 	// 3
 	public Person removeUser() {
+		if(Catalog.getUsers().size()==0){
+			System.out.println("No hay usuarios.\n");
+			return this;
+		}
+		System.out.println("Elija un usuario de la lista para borrar:\n");
+		ArrayList<User> usuarios = new ArrayList<User>(Catalog.getUsers());
+		for(int i =0;i<usuarios.size();i++)System.out.println(i+ " " + usuarios.get(i).toString());
+		Catalog.removeUser(usuarios.get(Reader.readInt()));
 		return this;
 	}
 

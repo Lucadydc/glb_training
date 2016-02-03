@@ -8,7 +8,7 @@ public class Loan {
 	public Loan(Comic comic, User user){
 		this.comic = comic;
 		this.user = user;
-		status = "Pending";
+		status = "Pending Approval";
 	}
 	public void setStatus(String status){
 		this.status = status;
@@ -26,7 +26,7 @@ public class Loan {
 	}
 	
 	public String toString(){
-		return user + " " +  comic + " " + status;
+		return user.getUser() + " " +  comic + " " + status;
 	}
 
 }

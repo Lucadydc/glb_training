@@ -16,15 +16,19 @@ public class App {
 		Person persona = new Person();
 		do{
 			try {
+				System.out.println("\n--Menú Principal--\n");
 				persona = persona.method(opciones(persona.getOperaciones()));
-			} catch (InputMismatchException e) {
-				System.out.println("Entrada errónea.");
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("Entrada errónea.\n");
+			} catch(InputMismatchException e){
+				System.out.println("Entrada errónea.\n");
+				Reader.readString();
 			}
 		}while(persona != null);
 		Reader.close();
 	}
 
-	private static int opciones(String[] op) throws InputMismatchException {
+	private static int opciones(String[] op) {
 		for (String s : op)
 			System.out.println(s);
 		int i = Reader.readInt();
@@ -34,32 +38,3 @@ public class App {
 }		
 		
 		
-		
-		
-		
-/*		boolean flag = true;
-		do {
-			// log in o lista de comics
-			switch (opciones(setOperacionesUno)) {
-			case 1:
-				break;
-			case 2:
-				// log in
-				UserAdmin admin = new UserAdmin();
-				admin.method(opciones(admin.getOperaciones()));
-				
-				
-				flag = false;
-				break;
-			case 3:
-				// lista de comics
-				flag = false;
-				break;
-
-			default:
-				System.out.println("Opción no válida\n");
-				break;
-			}
-		} while (flag);
-		s.close();*/
-

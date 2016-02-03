@@ -1,6 +1,5 @@
 package com.globant.training.glb_training;
 
-import java.util.InputMismatchException;
 import java.util.TreeSet;
 
 
@@ -19,8 +18,6 @@ public class Person {
 			new Action(){public Person method(){ return exit();}},//2
 			}; 
 	
-	public Person(){
-	}
 	
 	//0
 	public Person listOfComics(){
@@ -29,8 +26,8 @@ public class Person {
 	}
 	
 	//1
-	public Person logIn() throws InputMismatchException{
-		System.out.println("Ingrese usuario y contraseña: ");
+	public Person logIn() {
+		System.out.println("\n--Ingrese usuario y contraseña--\n");
 		User usuario =	LogIn.login(Reader.readString(),Reader.readString());
 		if(usuario == null){
 			System.out.println("Log In fallido");
