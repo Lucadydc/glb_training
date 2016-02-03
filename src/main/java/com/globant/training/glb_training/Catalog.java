@@ -1,11 +1,12 @@
 package com.globant.training.glb_training;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class Catalog {
 	private static ArrayList<Comic> comics = new ArrayList<Comic>();
 	private static ArrayList<Loan> loans = new ArrayList<Loan>();
-	private static ArrayList<User> users = new ArrayList<User>();
+	private static TreeSet<User> users = new TreeSet<User>();
 	private static ArrayList<String> genres = new ArrayList<String>();
 
 	public static ArrayList<Comic> getComics() {
@@ -16,7 +17,7 @@ public class Catalog {
 		return loans;
 	}
 
-	public static ArrayList<User> getUsers() {
+	public static TreeSet<User> getUsers() {
 		return users;
 	}
 

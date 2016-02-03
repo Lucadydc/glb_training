@@ -1,14 +1,42 @@
 package com.globant.training.glb_training;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class App {
-	final static String[] setOperacionesUno = { "Elegir Opcion: ", "1 Volver", "2 Log in", "3 Lista de Comics" };
-	static Scanner s = new Scanner(System.in);
+	
+	
 	public static void main(String[] args) {
+		Catalog.addComic(new Comic("Superman 01", "Superheroes", 1990));
+		Catalog.addComic(new Comic("Superman 02", "Superheroes", 1995));
+		Catalog.addComic(new Comic("Spiderman 01", "Superheroes", 2000));
+		Catalog.addUser(new User("pepe","mujica"));
+		Catalog.addUser(new User("user","pass"));
+		Catalog.addUser(new User("hola","123"));
+		Person persona = new Person();
+		do{
+			try {
+				persona = persona.method(opciones(persona.getOperaciones()));
+			} catch (InputMismatchException e) {
+				System.out.println("Entrada errónea.");
+			}
+		}while(persona != null);
+		Reader.close();
+	}
+
+	private static int opciones(String[] op) throws InputMismatchException {
+		for (String s : op)
+			System.out.println(s);
+		int i = Reader.readInt();
+		return i;
+	}
+
+}		
 		
-		boolean flag = true;
+		
+		
+		
+		
+/*		boolean flag = true;
 		do {
 			// log in o lista de comics
 			switch (opciones(setOperacionesUno)) {
@@ -32,14 +60,5 @@ public class App {
 				break;
 			}
 		} while (flag);
-		s.close();
-	}
+		s.close();*/
 
-	private static int opciones(String[] op) throws InputMismatchException {
-		for (String s : op)
-			System.out.println(s);
-		int i = s.nextInt();
-		return i;
-	}
-
-}
