@@ -25,7 +25,8 @@ public class Catalog {
 	}
 
 	public static void addComic(Comic comic) {
-		comics.add(comic);
+		if(!comics.add(comic))	comics.stream().filter(s-> s.equals(comic)).findFirst().get().increaseCopies();
+		
 	}
 
 	public static void addLoan(Loan loan) {

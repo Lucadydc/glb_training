@@ -40,6 +40,10 @@ public class Comic implements Comparable<Comic>{
 	public int getCopies(){
 		return copies;
 	}
+	public boolean equals(Comic c){
+		if(this.compareTo(c)==0)return true;
+		return false;
+	}
 	@Override
 	public int compareTo(Comic arg0) {
 		return (this.getName()+this.getVolume()).compareTo(arg0.getName()+arg0.getVolume());
