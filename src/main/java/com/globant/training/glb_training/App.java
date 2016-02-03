@@ -6,12 +6,13 @@ public class App {
 	
 	
 	public static void main(String[] args) {
-		Catalog.addComic(new Comic("Superman 01", "Superheroes", 1990));
-		Catalog.addComic(new Comic("Superman 02", "Superheroes", 1995));
-		Catalog.addComic(new Comic("Spiderman 01", "Superheroes", 2000));
+		Catalog.addComic(new Comic("Superman", "Superheroes", 1));
+		Catalog.addComic(new Comic("Superman", "Superheroes", 2));
+		Catalog.addComic(new Comic("Spiderman", "Superheroes", 1));
 		Catalog.addUser(new User("pepe","mujica"));
 		Catalog.addUser(new User("user","pass"));
 		Catalog.addUser(new User("hola","123"));
+		
 		Person persona = new Person();
 		do{
 			try {

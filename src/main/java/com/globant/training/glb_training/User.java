@@ -80,6 +80,7 @@ public class User extends Person implements Comparable<User> {
 
 	// 3
 	public Person addLoan() {
+		System.out.println("Select a ");
 		return this;
 	}
 

@@ -1,8 +1,7 @@
 package com.globant.training.glb_training;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.InputMismatchException;
+import java.util.TreeSet;
 
 
 public class Person {
@@ -25,7 +24,7 @@ public class Person {
 	
 	//0
 	public Person listOfComics(){
-		new HashSet<Comic>(Catalog.getComics()).forEach(s -> System.out.println(s));
+		Catalog.getComics().forEach(s -> System.out.println(s));
 		return this;
 	}
 	
@@ -52,7 +51,7 @@ public class Person {
 	public Person method(int index) {
 		return methods[index].method();
 	}
-	public ArrayList<Comic> getComics() {
+	public TreeSet<Comic> getComics() {
 		return Catalog.getComics();
 	}
 }
