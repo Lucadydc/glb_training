@@ -8,12 +8,12 @@ public class User extends Person implements Comparable<User> {
 	private String user;
 	private String pass;
 	
-	final private String[] operaciones = {"0 Ver Listado de Comics",
-			"1 Log Out",
-			"2 Ver préstamos",
-			"3 Realizar préstamo",
-			"4 Finalizar préstamo",
-			"5 Salir"};
+	final private String[] operaciones = {"( 0 ) Ver Listado de Comics.",
+			"( 1 ) Log Out.",
+			"( 2 ) Ver préstamos.",
+			"( 3 ) Realizar préstamo.",
+			"( 4 ) Finalizar préstamo.",
+			"( 5 ) Salir."};
 	
 	
 	final private Action[] methods = new Action[]{
@@ -52,7 +52,8 @@ public class User extends Person implements Comparable<User> {
 	}
 
 	public ArrayList<Loan> getLoans() {
-		return (ArrayList<Loan>) Catalog.getLoans().stream().filter(s->s.getUser().equals(this)).collect(Collectors.toList());
+		return (ArrayList<Loan>) Catalog.getLoans().stream().filter(s -> s.getUser().equals(this))
+				.collect(Collectors.toList());
 	}
 
 	public boolean equals(User u) {
@@ -73,7 +74,8 @@ public class User extends Person implements Comparable<User> {
 
 	// 2
 	public Person listOfLoans() {
-		if(Catalog.getLoans().stream().filter(s->s.getUser().equals(this)).collect(Collectors.toList()).size()==0){
+		if (Catalog.getLoans().stream().filter(s -> s.getUser().equals(this)).collect(Collectors.toList())
+				.size() == 0) {
 			System.out.println("\n--No tiene préstamos--\n");
 			return this;
 		}
@@ -100,13 +102,14 @@ public class User extends Person implements Comparable<User> {
 
 	// 4
 	public Person removeLoan() {
-		if(this.getLoans().size()==0){
+		if (this.getLoans().size() == 0) {
 			System.out.println("\n--No tiene préstamos--\n");
 			return this;
 		}
 		System.out.println("Elija un préstamo de la lista:\n");
 		ArrayList<Loan> loans = this.getLoans();
-		for(int i =0;i<loans.size();i++)System.out.println(i+ " " + loans.get(i).toStringBasic());
+		for (int i = 0; i < loans.size(); i++)
+			System.out.println(i + " " + loans.get(i).toStringBasic());
 		int loan = Reader.readInt();
 		Catalog.removeLoan(loans.get(loan));
 		loans.remove(loans.get(loan));

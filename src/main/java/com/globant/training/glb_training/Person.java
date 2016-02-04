@@ -4,9 +4,9 @@ import java.util.TreeSet;
 
 
 public class Person {
-	final private String[] operaciones = {"0 Ver Listado de Comics",
-											"1 Loguearse",
-											"2 Salir"};
+	final private String[] operaciones = {"( 0 ) Ver Listado de Comics.",
+											"( 1 ) Loguearse.",
+											"( 2 ) Salir."};
 
 	interface Action {
 		Person method();
