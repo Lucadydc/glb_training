@@ -73,11 +73,13 @@ public class User extends Person implements Comparable<User> {
 
 	// 1
 	public Person logOut() {
+		Writer.write("\n--Logout--\n");
 		return new Person();
 	}
 
 	// 2
 	public Person listOfLoans() {
+		Writer.write("\n--Ver Préstamos--\n");
 		if (Catalog.getLoans().stream().filter(s -> s.getUser().equals(this)).collect(Collectors.toList())
 				.size() == 0) {
 			Writer.write("\n--No tiene préstamos--\n");
@@ -90,6 +92,7 @@ public class User extends Person implements Comparable<User> {
 
 	// 3
 	public Person addLoan() {
+		Writer.write("\n--Realizar Préstamo--\n");
 		Writer.write("\n--Elija un comic de la lista--\n");
 		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
 		for (int i = 0; i < comics.size(); i++)
@@ -106,6 +109,7 @@ public class User extends Person implements Comparable<User> {
 
 	// 4
 	public Person removeLoan() {
+		Writer.write("\n--Finalizar Préstamo--\n");
 		if (this.getLoans().size() == 0) {
 			Writer.write("\n--No tiene préstamos--\n");
 			return this;

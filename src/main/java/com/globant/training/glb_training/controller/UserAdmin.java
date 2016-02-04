@@ -70,12 +70,14 @@ public class UserAdmin extends User {
 
 	// 0
 	public Person listOfUsers() {
+		Writer.write("\n--Listado de Usuarios--\n");
 		Catalog.getUsers().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
 
 	// 1
 	public Person addUser() {
+		Writer.write("\n--Agregar Usuario--\n");
 		Writer.write("\n--Ingrese Usuario y Contraseña del nuevo Usuario--\n");
 		Catalog.addUser(new User(Reader.readString(), Reader.readString()));
 		return this;
@@ -83,6 +85,7 @@ public class UserAdmin extends User {
 
 	// 2
 	public Person editUser() {
+		Writer.write("\n--Modificar usuario--\n");
 		Writer.write("\n--El usuario deberá reingresar todos sus préstamos--\n¿Continuar?(y/n)");
 		switch (Reader.readString().toLowerCase()) {
 		case "y":
@@ -99,6 +102,7 @@ public class UserAdmin extends User {
 
 	// 3
 	public Person removeUser() {
+		Writer.write("\n--Borrar Usuario--\n");
 		if (Catalog.getUsers().size() == 0) {
 			Writer.write("No hay usuarios.\n");
 			return this;
@@ -124,6 +128,7 @@ public class UserAdmin extends User {
 
 	// 5
 	public Person addComic() {
+		Writer.write("\n--Agregar Comic--\n");
 		Writer.write("\n--Elija un género--\n");
 		ArrayList<String> generos = new ArrayList<String>(Catalog.getGenres());
 		for (int i = 0; i < generos.size(); i++) {
@@ -139,6 +144,7 @@ public class UserAdmin extends User {
 
 	// 6
 	public Person editComic() {
+		Writer.write("\n--Modificar Comic--\n");
 		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
 		Writer.write("\n--Elija el Comic que desea editar--\n");
 		for (int i = 0; i < comics.size(); i++)
@@ -156,6 +162,7 @@ public class UserAdmin extends User {
 
 	// 7
 	public Person removeComic() {
+		Writer.write("\n--Borrar Comic--\n");
 		Writer.write("\n--Se borrarán todos los ejemplares del Comic--\n¿Continuar?(y/n)");
 		switch (Reader.readString().toLowerCase()) {
 		case "y":
@@ -179,12 +186,14 @@ public class UserAdmin extends User {
 
 	// 8
 	public Person listOfLoans() {
+		Writer.write("\n--Listado de Préstamos--\n");
 		Catalog.getLoans().stream().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
 
 	// 9
 	public Person acceptLoan() {
+		Writer.write("\n--Aceptar Préstamo--\n");
 		ArrayList<Loan> loans = new ArrayList<Loan>(Catalog.getLoans().stream()
 				.filter(s -> s.getStatus().equals("Pending Approval")).collect(Collectors.toList()));
 		if (loans.size() == 0) {
@@ -204,6 +213,7 @@ public class UserAdmin extends User {
 
 	// 10
 	public Person rejectLoan() {
+		Writer.write("\n--Rechazar Préstamo--\n");
 		ArrayList<Loan> loans = new ArrayList<Loan>(Catalog.getLoans().stream()
 				.filter(s -> s.getStatus().equals("Pending Approval")).collect(Collectors.toList()));
 		if (loans.size() == 0) {
@@ -219,12 +229,14 @@ public class UserAdmin extends User {
 
 	// 11
 	public Person listOfGenres() {
+		Writer.write("\n--Listado de Géneros--\n");
 		Catalog.getGenres().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
 
 	// 12
 	public Person addGenre() {
+		Writer.write("\n--Agregar un Género--\n");
 		Writer.write("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
 		Catalog.addGenre(Reader.readString());
 		return this;
@@ -232,6 +244,7 @@ public class UserAdmin extends User {
 
 	// 13
 	public Person editGenre() {
+		Writer.write("\n--Modificar un Género --\n");
 		Writer.write("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
 		String originalGenre = Reader.readString();
 		if (Catalog.getGenres().contains(originalGenre)) {
@@ -246,6 +259,7 @@ public class UserAdmin extends User {
 
 	// 14
 	public Person removeGenre() {
+		Writer.write("\n--Borrar un Género--\n");
 		Writer.write("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
 		if (Catalog.removeGenre(Reader.readString())) {
 			Writer.write("\n--Se borró el género de manera satisfactoria--\n");

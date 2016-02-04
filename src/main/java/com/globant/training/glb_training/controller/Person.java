@@ -25,19 +25,21 @@ public class Person {
 	
 	//0
 	public Person listOfComics(){
+		Writer.write("\n--Listado de Comics--\n");
 		Catalog.getComics().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
 	
 	//1
 	public Person logIn() {
+		Writer.write("\n--Login--\n");
 		Writer.write("\n--Ingrese usuario y contraseña--\n");
 		User usuario =	LogIn.login(Reader.readString(),Reader.readString());
 		if(usuario == null){
-			Writer.write("Log In fallido");
+			Writer.write("\n--Log In fallido--\n");
 			return this;
 		}
-		Writer.write("Log In Exitoso");
+		Writer.write("\n--Log In Exitoso--\n");
 		return usuario;
 	}
 	
