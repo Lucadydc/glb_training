@@ -19,10 +19,10 @@ public class App {
 			try {
 				System.out.println("\n--Menú Principal--\n");
 				persona = persona.method(opciones(persona.getOperaciones()));
-			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println("Entrada errónea.\n");
+			} catch (IndexOutOfBoundsException e) {
+				System.out.println("\n--Entrada errónea--\n");
 			} catch(InputMismatchException e){
-				System.out.println("Entrada errónea.\n");
+				System.out.println("\n--Entrada errónea--\n");
 				Reader.readString();
 			}
 		}while(persona != null);

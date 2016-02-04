@@ -6,10 +6,8 @@ public class Comic implements Comparable<Comic>{
 	private String genre;
 	private int volume;
 	private int copies;
-	private boolean borrowed;
 
 	public Comic(String name, String genre, int volume) {
-		this.borrowed = false;
 		this.name = name;
 		this.genre = genre;
 		this.volume = volume;
@@ -33,9 +31,6 @@ public class Comic implements Comparable<Comic>{
 		return this.volume;
 	}
 
-	public boolean getBorrowed() {
-		return this.borrowed;
-	}
 	public void increaseCopies(){
 		this.copies+=1;
 	}

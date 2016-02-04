@@ -1,6 +1,7 @@
 package com.globant.training.glb_training;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class UserAdmin extends User {
 	final private static String user = "Sheldon";
@@ -78,8 +79,17 @@ public class UserAdmin extends User {
 
 	// 2
 	public Person editUser() {
-		this.removeUser();
-		this.addUser();
+		System.out.println("\n--El usuario deberá reingresar todos sus préstamos--\n¿Continuar?(y/n)");
+		switch (Reader.readString().toLowerCase()) {
+		case "y":
+			this.removeUser();
+			this.addUser();
+			break;
+		case "n":
+			break;
+		default:
+			return this.editUser();
+		}
 		return this;
 	}
 
@@ -92,7 +102,11 @@ public class UserAdmin extends User {
 		System.out.println("\n--Elija un usuario de la lista para borrar--\n");
 		ArrayList<User> usuarios = new ArrayList<User>(Catalog.getUsers());
 		for(int i =0;i<usuarios.size();i++)System.out.println(i+ " " + usuarios.get(i).toString());
-		Catalog.removeUser(usuarios.get(Reader.readInt()));
+		if(Catalog.removeUser(usuarios.get(Reader.readInt()))){
+			System.out.println("\n--Usuario borrado--\n");
+			return this;
+		}
+		System.out.println("\n--El Usuario no pudo ser borrado--\n");
 		return this;
 	}
 
@@ -120,6 +134,7 @@ public class UserAdmin extends User {
 
 	// 6
 	public Person editComic() {
+		
 		return this;
 	}
 
@@ -130,11 +145,25 @@ public class UserAdmin extends User {
 
 	// 8
 	public Person listOfLoans() {
+		Catalog.getLoans().stream().forEach(s->System.out.println(s.toString()));
 		return this;
 	}
 
 	// 9
 	public Person acceptLoan() {
+		ArrayList<Loan>loans= new ArrayList<Loan>(Catalog.getLoans().stream().filter(s->s.getStatus().equals("Pending Approval")).collect(Collectors.toList()));
+		if(loans.size()==0){
+			System.out.println("\n--No hay préstamos pendientes de aprobación--\n");
+			return this;
+		}
+		for(int i = 0; i<loans.size();i++){
+			System.out.println(i+ " " + loans.get(i));
+		}
+		if(Catalog.addLoan(loans.get(Reader.readInt()))){
+			System.out.println("\n--Préstamo aceptado--\n");
+			return this;
+		}
+		System.out.println("\n--El préstamo no pudo aceptarse--\n");
 		return this;
 	}
 

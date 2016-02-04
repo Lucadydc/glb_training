@@ -1,5 +1,6 @@
 package com.globant.training.glb_training;
 
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Catalog {
@@ -25,16 +26,18 @@ public class Catalog {
 	}
 
 	public static void addComic(Comic comic) {
-		if(!comics.add(comic))	comics.stream().filter(s-> s.equals(comic)).findFirst().get().increaseCopies();
+		if(!comics.add(comic))	comics.stream().filter(s-> s.equals(comic)).forEach(s->s.increaseCopies());
 		
 	}
 
 	public static boolean addLoan(Loan loan) {
 		if(!loan.getComic().decreaseCopies()) return false;
-		loans.add(loan);
+		loan.setStatus("Accepted");
 		return true;
 	}
-
+	public static boolean askLoan(Loan loan){
+		return loans.add(loan);
+	}
 	public static void addUser(User user) {
 		users.add(user);
 	}
@@ -44,14 +47,18 @@ public class Catalog {
 	}
 
 	public static boolean removeComic(Comic comic) {
+		if(loans.stream().filter(s->s.getComic().equals(comic)).count() >0)return false;
 		return comics.remove(comic);
 	}
 
 	public static boolean removeUser(User user) {
+		ArrayList<Loan> list = new ArrayList<Loan>();
+		loans.stream().filter(s->s.getUser().equals(user)).forEach(s->list.add(s));
+		list.stream().forEach(s->Catalog.removeLoan(s));
 		return users.remove(user);
 	}
 	public static boolean removeLoan(Loan loan){
-		loan.getComic().increaseCopies();
+		if(loan.getStatus().equals("Accepted"))loan.getComic().increaseCopies();
 		return loans.remove(loan);
 	}
 	public static boolean removeGenre(String genre){

@@ -1,12 +1,12 @@
 package com.globant.training.glb_training;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 public class User extends Person implements Comparable<User> {
 	private String user;
 	private String pass;
-	private ArrayList<Loan> loans;
 	
 	final private String[] operaciones = {"0 Ver Listado de Comics",
 			"1 Log Out",
@@ -37,7 +37,6 @@ public class User extends Person implements Comparable<User> {
 	public User(String user, String pass) {
 		this.user = user;
 		this.pass = pass;
-		loans = new ArrayList<Loan>();
 	}
 
 	public String toString() {
@@ -53,7 +52,7 @@ public class User extends Person implements Comparable<User> {
 	}
 
 	public ArrayList<Loan> getLoans() {
-		return this.loans;
+		return (ArrayList<Loan>) Catalog.getLoans().stream().filter(s->s.getUser().equals(this)).collect(Collectors.toList());
 	}
 
 	public boolean equals(User u) {
@@ -74,7 +73,7 @@ public class User extends Person implements Comparable<User> {
 
 	// 2
 	public Person listOfLoans() {
-		if(loans.size()==0){
+		if(Catalog.getLoans().stream().filter(s->s.getUser().equals(this)).collect(Collectors.toList()).size()==0){
 			System.out.println("\n--No tiene préstamos--\n");
 			return this;
 		}
@@ -86,16 +85,16 @@ public class User extends Person implements Comparable<User> {
 	// 3
 	public Person addLoan() {
 		System.out.println("\n--Elija un comic de la lista--\n");
-		ArrayList<Comic> comics = 	new ArrayList<Comic>(Catalog.getComics());
-		for(int i =0;i<comics.size();i++)System.out.println(i+ " " + comics.get(i).toString());
+		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
+		for (int i = 0; i < comics.size(); i++)
+			System.out.println(i + " " + comics.get(i).toString());
 		Comic comic = comics.get(Reader.readInt());
 		Loan loan = new Loan(comic, this);
-		if(Catalog.addLoan(loan)){
-			this.loans.add(loan);
-			System.out.println("\n--Préstamo realizado con éxito--\n");
+		if (Catalog.askLoan(loan)) {
+			System.out.println("\n--Préstamo pedido con éxito--\n");
 			return this;
 		}
-		System.out.println("\n--El préstamo no pudo ser realizado--\n");
+		System.out.println("\n--El préstamo no pudo ser pedido--\n");
 		return this;
 	}
 
@@ -106,6 +105,7 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		System.out.println("Elija un préstamo de la lista:\n");
+		ArrayList<Loan> loans = this.getLoans();
 		for(int i =0;i<loans.size();i++)System.out.println(i+ " " + loans.get(i).toStringBasic());
 		int loan = Reader.readInt();
 		Catalog.removeLoan(loans.get(loan));
