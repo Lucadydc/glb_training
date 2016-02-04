@@ -69,4 +69,11 @@ public class Catalog {
 		comics.stream().filter(s->s.getGenre().equals(originalGenre)).forEach(s->s.setGenre(genre));
 		genres.stream().filter(s->s.equals(originalGenre)).forEach(s->s=genre);
 	}
+
+	public static void editComic(Comic originalComic, String name, int volume) {
+		Comic comic = new Comic(name, originalComic.getGenre(),volume,originalComic.getCopies());
+		loans.stream().filter(s->s.getComic().equals(originalComic)).forEach(s->s.setComic(comic));
+		comics.stream().filter(s->s.equals(originalComic)).forEach(s->{s.setName(name);s.setVolume(volume);});
+		
+	}
 }

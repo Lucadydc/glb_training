@@ -25,23 +25,23 @@ public class UserAdmin extends User {
 										"16 Salir"};
 	
 	final private Action[] methods = new Action[]{
-			new Action(){public Person method(){ return listOfUsers();}},//0
-			new Action(){public Person method(){ return addUser();}},//1
-			new Action(){public Person method(){ return editUser();}},//2
-			new Action(){public Person method(){ return removeUser();}},//3
-			new Action(){public Person method(){ return listOfComics();}},//4
-			new Action(){public Person method(){ return addComic();}},//5
+			new Action(){public Person method(){ return listOfUsers();}},//0 listo
+			new Action(){public Person method(){ return addUser();}},//1 listo
+			new Action(){public Person method(){ return editUser();}},//2 listo
+			new Action(){public Person method(){ return removeUser();}},//3 listo
+			new Action(){public Person method(){ return listOfComics();}},//4 listo
+			new Action(){public Person method(){ return addComic();}},//5 listo
 			new Action(){public Person method(){ return editComic();}},//6
 			new Action(){public Person method(){ return removeComic();}},//7
-			new Action(){public Person method(){ return listOfLoans();}},//8
-			new Action(){public Person method(){ return acceptLoan();}},//9
-			new Action(){public Person method(){ return rejectLoan();}},//10
-			new Action(){public Person method(){ return listOfGenres();}},//11
-			new Action(){public Person method(){ return addGenre();}},//12
-			new Action(){public Person method(){ return editGenre();}},//13
-			new Action(){public Person method(){ return removeGenre();}},//14
-			new Action(){public Person method(){ return logOut();}},//15 
-			new Action(){public Person method(){ return exit();}},//16
+			new Action(){public Person method(){ return listOfLoans();}},//8 listo
+			new Action(){public Person method(){ return acceptLoan();}},//9 listo
+			new Action(){public Person method(){ return rejectLoan();}},//10 listo
+			new Action(){public Person method(){ return listOfGenres();}},//11 listo
+			new Action(){public Person method(){ return addGenre();}},//12 listo
+			new Action(){public Person method(){ return editGenre();}},//13 listo
+			new Action(){public Person method(){ return removeGenre();}},//14 listo
+			new Action(){public Person method(){ return logOut();}},//15  listo
+			new Action(){public Person method(){ return exit();}},//16 listo
 	}; 
 	
 	public UserAdmin() {
@@ -134,12 +134,41 @@ public class UserAdmin extends User {
 
 	// 6
 	public Person editComic() {
-		
+		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
+		System.out.println("\n--Elija el Comic que desea editar--\n");
+		for (int i = 0; i < comics.size(); i++)
+			System.out.println(i + " " + comics.get(i));
+		Comic originalComic = comics.get(Reader.readInt());
+		if (Catalog.getComics().contains(originalComic)) {
+			System.out.println("\n--Ingrese nuevo Nombre (no se admiten espacios, usar '-') y Volumen--\n");
+			Catalog.editComic(originalComic, Reader.readString(),Reader.readInt());
+			System.out.println("\n--Edición Exitosa--\n");
+			return this;
+		}
+		System.out.println("\n--Edición Fallida--\n");
 		return this;
 	}
 
 	// 7
 	public Person removeComic() {
+		System.out.println("\n--Se borrarán todos los ejemplares del Comic--\n¿Continuar?(y/n)");
+		switch (Reader.readString().toLowerCase()) {
+		case "y":
+			ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
+			System.out.println("\n--Elija el Comic que desea borrar--\n");
+			for (int i = 0; i < comics.size(); i++)
+				System.out.println(i + " " + comics.get(i));
+			if(Catalog.removeComic(comics.get(Reader.readInt()))){
+				System.out.println("\n--El comic se borró exitosamente--\n");
+				return this;
+			}
+			System.out.println("\n--El comic no pudo ser borrado--\n");
+			break;
+		case "n":
+			break;
+		default:
+			return this.removeComic();
+		}
 		return this;
 	}
 
@@ -169,6 +198,15 @@ public class UserAdmin extends User {
 
 	// 10
 	public Person rejectLoan() {
+		ArrayList<Loan>loans= new ArrayList<Loan>(Catalog.getLoans().stream().filter(s->s.getStatus().equals("Pending Approval")).collect(Collectors.toList()));
+		if(loans.size()==0){
+			System.out.println("\n--No hay préstamos pendientes de aprobación--\n");
+			return this;
+		}
+		for(int i = 0; i<loans.size();i++){
+			System.out.println(i+ " " + loans.get(i));
+		}
+		Catalog.removeLoan(loans.get(Reader.readInt()));
 		return this;
 	}
 
@@ -206,7 +244,7 @@ public class UserAdmin extends User {
 			System.out.println("\n--Se borró el género de manera satisfactoria--\n");
 			return this;
 		}
-		System.out.println("\n--No se pudo borrar el género--\n");
+		System.out.println("\n--No se pudo borrar el género--\n(No existe o hay comics ingresados con ese género)");
 		return this;
 	}
 }

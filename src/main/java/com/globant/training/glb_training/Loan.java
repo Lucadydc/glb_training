@@ -45,4 +45,8 @@ public class Loan implements Comparable<Loan> {
 		return (this.getComic().toString()+this.getUser().toString()).compareTo(l.getComic().toString()+l.getUser().toString());
 	}
 
+	public void setComic(Comic comic) {
+		this.comic = comic;
+	}
+
 }
