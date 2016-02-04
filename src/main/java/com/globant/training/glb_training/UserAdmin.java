@@ -112,7 +112,7 @@ public class UserAdmin extends User {
 		}
 		int genero = Reader.readInt();
 		generos.get(genero);
-		System.out.println("\n--Ingrese Nombre(no se admiten espacios usar '-') y Volumen--\n");
+		System.out.println("\n--Ingrese Nombre(no se admiten espacios, usar '-') y Volumen--\n");
 		Comic comic = new Comic(Reader.readString(),generos.get(genero), Reader.readInt());
 		Catalog.addComic(comic);		
 		return this;
@@ -145,21 +145,39 @@ public class UserAdmin extends User {
 
 	// 11
 	public Person listOfGenres() {
+		Catalog.getGenres().forEach(s->System.out.println(s.toString()));
 		return this;
 	}
 
 	// 12
 	public Person addGenre() {
+		System.out.println("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
+		Catalog.addGenre(Reader.readString());
 		return this;
 	}
 
 	// 13
 	public Person editGenre() {
+		System.out.println("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
+		String originalGenre = Reader.readString();
+		if (Catalog.getGenres().contains(originalGenre)) {
+			System.out.println("\n--Ingrese el nuevo género (no se admiten espacios, usar '-')--\n");
+			Catalog.editGenre(originalGenre, Reader.readString());
+			System.out.println("\n--Edición Exitosa--\n");
+			return this;
+		}
+		System.out.println("\n--Edición Fallida--\n");
 		return this;
 	}
 
 	// 14
 	public Person removeGenre() {
+		System.out.println("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
+		if(Catalog.removeGenre(Reader.readString())){
+			System.out.println("\n--Se borró el género de manera satisfactoria--\n");
+			return this;
+		}
+		System.out.println("\n--No se pudo borrar el género--\n");
 		return this;
 	}
 }

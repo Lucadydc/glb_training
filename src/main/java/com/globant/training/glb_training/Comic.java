@@ -15,7 +15,9 @@ public class Comic implements Comparable<Comic>{
 		this.volume = volume;
 		this.copies = 1;
 	}
-	
+	public String toStringBasic(){
+		return "["+ name + "] ["+volume+"] ["+genre+"]";
+	}
 	public String toString(){
 		return "["+ name + "] ["+volume+"] ["+genre+"] ["+copies+"]";
 	}
@@ -37,8 +39,12 @@ public class Comic implements Comparable<Comic>{
 	public void increaseCopies(){
 		this.copies+=1;
 	}
-	public void decreaseCopies(){
-		this.copies-=1;
+	public boolean decreaseCopies(){
+		if(copies >=1){
+			this.copies-=1;
+			return true;
+		}
+		return false;
 	}
 	public int getCopies(){
 		return copies;
@@ -50,6 +56,9 @@ public class Comic implements Comparable<Comic>{
 	@Override
 	public int compareTo(Comic arg0) {
 		return (this.getName()+this.getVolume()).compareTo(arg0.getName()+arg0.getVolume());
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 
 }

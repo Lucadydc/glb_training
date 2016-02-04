@@ -79,7 +79,7 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		System.out.println("\n--Sus préstamos son--\n");
-		this.getLoans().forEach(s -> System.out.println(s.toString()));
+		this.getLoans().forEach(s -> System.out.println(s.toStringBasic()));
 		return this;
 	}
 
@@ -90,7 +90,12 @@ public class User extends Person implements Comparable<User> {
 		for(int i =0;i<comics.size();i++)System.out.println(i+ " " + comics.get(i).toString());
 		Comic comic = comics.get(Reader.readInt());
 		Loan loan = new Loan(comic, this);
-		this.loans.add(loan);
+		if(Catalog.addLoan(loan)){
+			this.loans.add(loan);
+			System.out.println("\n--Préstamo realizado con éxito--\n");
+			return this;
+		}
+		System.out.println("\n--El préstamo no pudo ser realizado--\n");
 		return this;
 	}
 
@@ -101,8 +106,10 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		System.out.println("Elija un préstamo de la lista:\n");
-		for(int i =0;i<loans.size();i++)System.out.println(i+ " " + loans.get(i).toString());
-		loans.remove(loans.get(Reader.readInt()));
+		for(int i =0;i<loans.size();i++)System.out.println(i+ " " + loans.get(i).toStringBasic());
+		int loan = Reader.readInt();
+		Catalog.removeLoan(loans.get(loan));
+		loans.remove(loans.get(loan));
 		return this;
 	}
 

@@ -29,8 +29,10 @@ public class Catalog {
 		
 	}
 
-	public static void addLoan(Loan loan) {
+	public static boolean addLoan(Loan loan) {
+		if(!loan.getComic().decreaseCopies()) return false;
 		loans.add(loan);
+		return true;
 	}
 
 	public static void addUser(User user) {
@@ -48,5 +50,16 @@ public class Catalog {
 	public static boolean removeUser(User user) {
 		return users.remove(user);
 	}
-
+	public static boolean removeLoan(Loan loan){
+		loan.getComic().increaseCopies();
+		return loans.remove(loan);
+	}
+	public static boolean removeGenre(String genre){
+		if(comics.stream().filter(s->s.getGenre().equals(genre)).count()>0)return false;
+		return genres.remove(genre);
+	}
+	public static void editGenre(String originalGenre, String genre){
+		comics.stream().filter(s->s.getGenre().equals(originalGenre)).forEach(s->s.setGenre(genre));
+		genres.stream().filter(s->s.equals(originalGenre)).forEach(s->s=genre);
+	}
 }
