@@ -26,6 +26,7 @@ public class Person {
 	//0
 	public Person listOfComics(){
 		Writer.write("\n--Listado de Comics--\n");
+		Writer.write("\n[Nombre][Volumen][Género][Copias Disponibles]");
 		Catalog.getComics().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}

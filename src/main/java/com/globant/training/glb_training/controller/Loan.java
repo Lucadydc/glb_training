@@ -12,7 +12,7 @@ public class Loan implements Comparable<Loan> {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		if(status.equals("Accepted")||status.equals("Pending Approval"))this.status = status;
 	}
 
 	public Comic getComic() {

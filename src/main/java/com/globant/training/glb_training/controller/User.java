@@ -86,6 +86,7 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		Writer.write("\n--Sus préstamos son--\n");
+		Writer.write("\n[Datos del Comic]\t[Estado]");
 		this.getLoans().forEach(s -> Writer.write(s.toStringBasic()));
 		return this;
 	}

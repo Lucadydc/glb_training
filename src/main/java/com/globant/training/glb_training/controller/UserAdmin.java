@@ -71,6 +71,7 @@ public class UserAdmin extends User {
 	// 0
 	public Person listOfUsers() {
 		Writer.write("\n--Listado de Usuarios--\n");
+		Writer.write("\n[Username] [Password]");
 		Catalog.getUsers().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
@@ -187,6 +188,7 @@ public class UserAdmin extends User {
 	// 8
 	public Person listOfLoans() {
 		Writer.write("\n--Listado de Préstamos--\n");
+		Writer.write("\n[Usuario] [Comic]\t\t[Estado]");
 		Catalog.getLoans().stream().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
