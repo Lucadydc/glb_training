@@ -77,7 +77,9 @@ public class Catalog {
 	public static void editGenre(String originalGenre, String genre){
 		if(originalGenre ==null || genre == null || originalGenre =="" || genre =="")return;
 		comics.stream().filter(s->s.getGenre().equals(originalGenre)).forEach(s->s.setGenre(genre));
-		genres.stream().filter(s->s.equals(originalGenre)).forEach(s->s=genre);
+		ArrayList<String> list = new ArrayList<String>();
+		genres.stream().filter(s->s.equals(originalGenre)).forEach(s->list.add(s));
+		for(String s:list){genres.remove(s);genres.add(genre);}
 	}
 
 	public static void editComic(Comic originalComic, String name, int volume) {
