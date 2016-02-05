@@ -28,11 +28,11 @@ public class Loan implements Comparable<Loan> {
 	}
 
 	public String toString() {
-		return user.getUser() + " " + comic + " " + status;
+		return String.format("%-16s %s %-16s", user.getUser(),comic,status);
 	}
 	
 	public String toStringBasic(){
-		return comic.toStringBasic() + " " + status;
+		return String.format("%s %-16s", comic.toStringBasic(),status);
 	}
 	
 	public boolean equals(Loan l){

@@ -10,16 +10,16 @@ import com.globant.training.glb_training.view.Writer;
 public class UserAdmin extends User {
 	final private static String user = "Sheldon";
 	final private static String pass = "Bazinga";
-	final private String[] operaciones = {"( 0 ) Ver Listado de Usuarios.",
-										"( 1 ) Agregar Usuario.",
-										"( 2 ) Modificar Usuario.",
-										"( 3 ) Borrar Usuario.",
-										"( 4 ) Ver Listado de Comics.",
-										"( 5 ) Agregar Comic.",
-										"( 6 ) Modificar Comic.",
-										"( 7 ) Borrar Comic.",
-										"( 8 ) Ver Listado de Préstamos.",
-										"( 9 ) Aceptar Préstamo.",
+	final private String[] operaciones = {"(  0 ) Ver Listado de Usuarios.",
+										"(  1 ) Agregar Usuario.",
+										"(  2 ) Modificar Usuario.",
+										"(  3 ) Borrar Usuario.",
+										"(  4 ) Ver Listado de Comics.",
+										"(  5 ) Agregar Comic.",
+										"(  6 ) Modificar Comic.",
+										"(  7 ) Borrar Comic.",
+										"(  8 ) Ver Listado de Préstamos.",
+										"(  9 ) Aceptar Préstamo.",
 										"( 10 ) Rechazar Préstamo.",
 										"( 11 ) Ver Listado de Géneros.",
 										"( 12 ) Agregar Género.",
@@ -71,7 +71,7 @@ public class UserAdmin extends User {
 	// 0
 	public Person listOfUsers() {
 		Writer.write("\n--Listado de Usuarios--\n");
-		Writer.write("\n[Username] [Password]");
+		Writer.write(String.format("%-16s %-16s", "Username","Password"));
 		Catalog.getUsers().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
@@ -80,7 +80,13 @@ public class UserAdmin extends User {
 	public Person addUser() {
 		Writer.write("\n--Agregar Usuario--\n");
 		Writer.write("\n--Ingrese Usuario y Contraseña del nuevo Usuario--\n");
-		Catalog.addUser(new User(Reader.readString(), Reader.readString()));
+		String nombre = Reader.readString();
+		String password = Reader.readString();
+		if(nombre.length()>16||password.length()>16){
+			System.out.println("\n--El nombre y password no pueden ser más largos que 16 caracteres.--\n");
+			return this;
+		}
+		Catalog.addUser(new User(nombre, password));
 		return this;
 	}
 
@@ -109,6 +115,7 @@ public class UserAdmin extends User {
 			return this;
 		}
 		Writer.write("\n--Elija un usuario de la lista para borrar--\n");
+		Writer.write(String.format("  %-16s %-16s", "Nombre","Password"));
 		ArrayList<User> usuarios = new ArrayList<User>(Catalog.getUsers());
 		for (int i = 0; i < usuarios.size(); i++)
 			Writer.write(i + " " + usuarios.get(i).toString());
@@ -138,7 +145,12 @@ public class UserAdmin extends User {
 		int genero = Reader.readInt();
 		generos.get(genero);
 		Writer.write("\n--Ingrese Nombre(no se admiten espacios, usar '-') y Volumen--\n");
-		Comic comic = new Comic(Reader.readString(), generos.get(genero), Reader.readInt());
+		String nombre = Reader.readString();
+		if(nombre.length()>16){
+			System.out.println("\n--El nombre no puede ser más largo que 16 caracteres.--\n");
+			return this;
+		}
+		Comic comic = new Comic(nombre, generos.get(genero), Reader.readInt());
 		Catalog.addComic(comic);
 		return this;
 	}
@@ -148,12 +160,18 @@ public class UserAdmin extends User {
 		Writer.write("\n--Modificar Comic--\n");
 		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
 		Writer.write("\n--Elija el Comic que desea editar--\n");
+		Writer.write(String.format("  %-16s %-16s %-16s %-16s", "Nombre","Volumen","Género","Copias Disponibles"));
 		for (int i = 0; i < comics.size(); i++)
 			Writer.write(i + " " + comics.get(i));
 		Comic originalComic = comics.get(Reader.readInt());
 		if (Catalog.getComics().contains(originalComic)) {
 			Writer.write("\n--Ingrese nuevo Nombre (no se admiten espacios, usar '-') y Volumen--\n");
-			Catalog.editComic(originalComic, Reader.readString(), Reader.readInt());
+			String nombre = Reader.readString();
+			if(nombre.length()>16){
+				System.out.println("\n--El nombre no puede ser más largo que 16 caracteres.--\n");
+				return this;
+			}
+			Catalog.editComic(originalComic, nombre, Reader.readInt());
 			Writer.write("\n--Edición Exitosa--\n");
 			return this;
 		}
@@ -169,6 +187,7 @@ public class UserAdmin extends User {
 		case "y":
 			ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
 			Writer.write("\n--Elija el Comic que desea borrar--\n");
+			Writer.write(String.format("  %-16s %-16s %-16s %-16s", "Nombre","Volumen","Género","Copias Disponibles"));
 			for (int i = 0; i < comics.size(); i++)
 				Writer.write(i + " " + comics.get(i));
 			if (Catalog.removeComic(comics.get(Reader.readInt()))) {
@@ -188,7 +207,7 @@ public class UserAdmin extends User {
 	// 8
 	public Person listOfLoans() {
 		Writer.write("\n--Listado de Préstamos--\n");
-		Writer.write("\n[Usuario] [Comic]\t\t[Estado]");
+		Writer.write(String.format("%-16s %-16s %-16s %-16s %-16s %-16s","Usuario","Nombre","Volumen","Género","Copias","Estado"));
 		Catalog.getLoans().stream().forEach(s -> Writer.write(s.toString()));
 		return this;
 	}
@@ -202,6 +221,7 @@ public class UserAdmin extends User {
 			Writer.write("\n--No hay préstamos pendientes de aprobación--\n");
 			return this;
 		}
+		Writer.write(String.format("  %-16s %-16s %-16s %-16s %-16s %-16s", "Usuario","Comic","Volumen","Género","Copias","Estado"));
 		for (int i = 0; i < loans.size(); i++) {
 			Writer.write(i + " " + loans.get(i));
 		}
@@ -222,6 +242,7 @@ public class UserAdmin extends User {
 			Writer.write("\n--No hay préstamos pendientes de aprobación--\n");
 			return this;
 		}
+		Writer.write(String.format("  %-16s %-16s %-16s %-16s %-16s %-16s", "Usuario","Comic","Volumen","Género","Copias","Estado"));
 		for (int i = 0; i < loans.size(); i++) {
 			Writer.write(i + " " + loans.get(i));
 		}
@@ -240,7 +261,12 @@ public class UserAdmin extends User {
 	public Person addGenre() {
 		Writer.write("\n--Agregar un Género--\n");
 		Writer.write("\n--Ingrese un género (no se admiten espacios, usar '-')--\n");
-		Catalog.addGenre(Reader.readString());
+		String nombre = Reader.readString();
+		if(nombre.length()>16){
+			System.out.println("\n--El nombre no puede ser más largo que 16 caracteres.--\n");
+			return this;
+		}
+		Catalog.addGenre(nombre);
 		return this;
 	}
 
@@ -251,7 +277,12 @@ public class UserAdmin extends User {
 		String originalGenre = Reader.readString();
 		if (Catalog.getGenres().contains(originalGenre)) {
 			Writer.write("\n--Ingrese el nuevo género (no se admiten espacios, usar '-')--\n");
-			Catalog.editGenre(originalGenre, Reader.readString());
+			String nombre = Reader.readString();
+			if(nombre.length()>16){
+				System.out.println("\n--El nombre no puede ser más largo que 16 caracteres.--\n");
+				return this;
+			}
+			Catalog.editGenre(originalGenre, nombre);
 			Writer.write("\n--Edición Exitosa--\n");
 			return this;
 		}

@@ -44,7 +44,7 @@ public class User extends Person implements Comparable<User> {
 	}
 
 	public String toString() {
-		return user + " " + pass;
+		return String.format("%-16s %-16s", user,pass);
 	}
 
 	public String getUser() {
@@ -86,7 +86,7 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		Writer.write("\n--Sus préstamos son--\n");
-		Writer.write("\n[Datos del Comic]\t[Estado]");
+		Writer.write(String.format("%-16s %-16s %-16s %-16s", "Nombre","Volumen","Género","Estado"));
 		this.getLoans().forEach(s -> Writer.write(s.toStringBasic()));
 		return this;
 	}
@@ -95,6 +95,7 @@ public class User extends Person implements Comparable<User> {
 	public Person addLoan() {
 		Writer.write("\n--Realizar Préstamo--\n");
 		Writer.write("\n--Elija un comic de la lista--\n");
+		Writer.write(String.format("  %-16s %-16s %-16s %-16s", "Nombre","Volumen","Género","Copias Disponibles"));
 		ArrayList<Comic> comics = new ArrayList<Comic>(Catalog.getComics());
 		for (int i = 0; i < comics.size(); i++)
 			System.out.println(i + " " + comics.get(i).toString());
@@ -116,6 +117,7 @@ public class User extends Person implements Comparable<User> {
 			return this;
 		}
 		Writer.write("Elija un préstamo de la lista:\n");
+		Writer.write(String.format("  %-16s %-16s %-16s %-16s", "Nombre","Volumen","Género","Estado"));
 		ArrayList<Loan> loans = this.getLoans();
 		for (int i = 0; i < loans.size(); i++)
 			Writer.write(i + " " + loans.get(i).toStringBasic());

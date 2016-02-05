@@ -21,11 +21,11 @@ public class Comic implements Comparable<Comic> {
 	}
 
 	public String toStringBasic() {
-		return "[" + name + "] [" + volume + "] [" + genre + "]";
+		return String.format("%-16s %-16s %-16s", name,volume,genre);
 	}
 
 	public String toString() {
-		return "[" + name + "] [" + volume + "] [" + genre + "] [" + copies + "]";
+		return String.format("%-16s %-16s %-16s %-16s", name,volume,genre,copies);
 	}
 
 	public String getName() {
