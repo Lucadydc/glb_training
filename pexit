@@ -1,0 +1,133 @@
+[33mcommit 4973400a4f1671f39ae3f34a372f5bd791f72e8c[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Mon Feb 15 16:50:43 2016 -0300
+
+    Hibernate
+
+[33mcommit 1ca0a4f9619bdebbfd275154be942027df31a329[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Fri Feb 5 16:55:03 2016 -0300
+
+    Executable JAR
+
+[33mcommit bb44e341c1284f0dee5323324499489890290032[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Fri Feb 5 16:50:53 2016 -0300
+
+    Less files
+
+[33mcommit 89e9fbf651e5d13a23d2ed866bc3a3ff9e5fe530[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Fri Feb 5 16:17:55 2016 -0300
+
+    Console output formatting
+
+[33mcommit 3b663f298117a4b26009d04b5c987e752a71a3f1[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Fri Feb 5 14:43:26 2016 -0300
+
+    Minor non functional changes
+
+[33mcommit de6ce76c3dec99a8dcea93987ca4ca4a7e01f292[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Fri Feb 5 11:07:46 2016 -0300
+
+    Edit Genre fix
+
+[33mcommit e5cbfa353ca7ada1c02e55acf38f12e1fdad0935[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 17:57:02 2016 -0300
+
+    Quality of Life changes
+
+[33mcommit b375f5796efc2b0665ac1cf281b6c5df660b75ba[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 16:04:31 2016 -0300
+
+    MVC Model
+
+[33mcommit a5703e8be2646b911d532de359776f3a4b9124d3[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 14:52:24 2016 -0300
+
+    Code cleanup
+
+[33mcommit fdafc1bf242953be5ec5d218347f1f7c7f4e0e88[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 14:22:44 2016 -0300
+
+    Edit Comic
+
+[33mcommit a9477a757fc33971bb051c7f001d9e7d3a21f174[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 12:12:13 2016 -0300
+
+    Consistency accross classes
+
+[33mcommit 1e6c3dbc064b29a4474ac11cad3bccf96184b2c8[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Thu Feb 4 09:49:05 2016 -0300
+
+    Genre management
+
+[33mcommit ad2535ce2b8d45fbcc22c095ca66307570684cf5[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Wed Feb 3 18:00:56 2016 -0300
+
+    Add Comic
+
+[33mcommit 3345892fae0bc475ba9d4eae478ed98880cd4ce7[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Wed Feb 3 16:01:58 2016 -0300
+
+    User Management done
+
+[33mcommit 50079741dea6b282b4ef2c42e8082b6027fc7fe1[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Wed Feb 3 13:20:08 2016 -0300
+
+    Menu.java not used
+
+[33mcommit b8850045d1250b854fad13108c54baca35fff826[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Wed Feb 3 11:55:29 2016 -0300
+
+    Array List to Sets
+
+[33mcommit 05dd4b04750142e8646acee812978353476cfd6a[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Wed Feb 3 11:20:46 2016 -0300
+
+    Complete Person - Reader class - Partial User
+    
+    User : Log out,, list of Loans.
+
+[33mcommit efc39b961d0b24ebb345ab2bbb6a8a50d4f9c3b6[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Tue Feb 2 17:56:51 2016 -0300
+
+    Adapter for methods
+    
+    methods for guest and admin
+
+[33mcommit 0d28f890d9c1f1936564d69cca0767f2b400e291[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Tue Feb 2 13:12:41 2016 -0300
+
+    Static methods
+    
+    Class Catalog
+
+[33mcommit 08bc667fc7be75311120487fcb0f46f378bf65da[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Tue Feb 2 11:28:30 2016 -0300
+
+    Opening structure of classes
+    
+    Basic classes, comic, loan, catalog, user, admin, person and app.
+
+[33mcommit bceda7dc4cd92c8f68227b83349ecdbd21ed4b60[m
+Author: Luca Cucchetti <lucadydc.94@gmail.com>
+Date:   Tue Feb 2 11:24:36 2016 -0300
+
+    :neckbeard: Added .gitattributes & .gitignore files
